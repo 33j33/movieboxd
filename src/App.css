@@ -3,11 +3,24 @@
 :root {
     --clr-green: #00b020;
     --clr-black-1: rgb(19, 17, 24);
-    --clr-black-2: #14181c;
+    --clr-black-2: #09050c;
     --clr-grey-1: #2a262e;
     --clr-grey-2: #678;
     --clr-grey-3: #abc;
     --clr-blue: #40bcf4;
+
+    --clr-rating-great: rgb(33, 131, 74);
+    --clr-rating-good: rgb(72, 143, 31);
+    --clr-rating-average: rgb(145, 135, 45);
+    --clr-rating-bad: rgb(189, 64, 42);
+
+    /* FONT SIZES */
+    --ft-size-1: 1.4rem;
+    --ft-size-2: .8rem;
+
+    /* CARD DIMENSIONS */
+    --card-width: 200px;
+    --poster-height: 300px;
 }
 
 *, ::after, ::before {
@@ -46,13 +59,80 @@
 .nav .brand {
     letter-spacing: 2px;
     font-family: "Noto Sans TC";
-    font-size: 1.3rem;
+    font-size: var(--ft-size-1);
 }
 .nav .links {
     display: flex;
     align-items: center;
 }
 
-/* .link:focus, .link:hover, .link:active, .link:visited, .link:link{
-    text-decoration: none;
-} */
+
+/* ======================================================================= */
+/* --------------HOME PAGE------------------------------------- */
+/* ======================================================================= */
+.movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 10px
+}
+
+/* ======================================================================= */
+/* --------------MOVIE CARD------------------------------------- */
+/* ======================================================================= */
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+    background-color: var(--clr-black-1);
+    color: var(--clr-grey-3);
+    max-width: var(--card-width);
+    overflow: hidden;
+    border: 3px solid var(--clr-grey-1)/* used so that the element doesn't appear to move on hover */
+}
+.card:hover {
+    border: 3px solid var(--clr-green);
+}
+.card .poster-wrapper .poster {
+    object-fit: cover;
+    width: 100%;
+    overflow: hidden;
+    height: var(--poster-height);
+}
+.card .poster-wrapper .filler-img {
+    width: var(--card-width);
+    height: var(--poster-height);
+    background-color: var(--clr-black-2);
+}
+.card .info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: .5rem;
+    font-family: "Noto Sans TC";
+    font-size: var(--ft-size-2);
+    font-weight: 700;
+}
+.card .info .rating {
+    background-color: var(--clr-black-2);
+    align-self: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+.card .info .rating.great {
+    color: var(--clr-rating-great);
+}
+
+.card .info .rating.good {
+    color: var(--clr-rating-good);
+}
+
+.card .info .rating.average {
+    color: var(--clr-rating-average);
+}
+
+.card .info .rating.bad {
+    color: var(--clr-rating-bad);
+}
