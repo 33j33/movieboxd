@@ -5,18 +5,19 @@
     --clr-black-1: rgb(19, 17, 24);
     --clr-black-2: #09050c;
     --clr-grey-1: #2a262e;
-    --clr-grey-2: #678;
+    --clr-grey-2: rgb(102, 119, 136);
     --clr-grey-3: #abc;
     --clr-blue: #40bcf4;
 
-    --clr-rating-great: rgb(33, 131, 74);
-    --clr-rating-good: rgb(72, 143, 31);
-    --clr-rating-average: rgb(145, 135, 45);
-    --clr-rating-bad: rgb(189, 64, 42);
+    --clr-rating-great: rgb(57, 206, 57);
+    --clr-rating-good: rgb(57, 129, 24);
+    --clr-rating-average: rgb(122, 114, 34);
+    --clr-rating-bad: rgb(189, 101, 42);
 
     /* FONT SIZES */
     --ft-size-1: 1.4rem;
-    --ft-size-2: .8rem;
+    --ft-size-2: 1.2rem;
+    --ft-size-3: .8rem;
 
     /* CARD DIMENSIONS */
     --card-width: 200px;
@@ -31,6 +32,7 @@
 .App {
     background: var(--clr-grey-1); 
     min-height: 100vh;
+    min-width: 100vw;
 }
 
 /* ======================================================================= */
@@ -42,7 +44,7 @@
     justify-content: space-between;
     font-family: "Lato", "sans-serif";
     padding: 15px 25px;
-    background-color: var(--clr-black-1);
+    background-color: var(--clr-black-2);
 }
 .nav .link{
     text-decoration: none;
@@ -70,9 +72,36 @@
 /* ======================================================================= */
 /* --------------HOME PAGE------------------------------------- */
 /* ======================================================================= */
+.homepage {
+    max-width: 960px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.search-box {
+    margin: 15px 0px;
+    align-self: center;
+}
+.search-box input{
+    background-color: var(--clr-black-2);
+    color: var(--clr-grey-2);
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-family: "Noto Sans TC";
+    width: var(--card-width);
+}
+.search-box input:focus {
+    margin: -2px;
+    border: 1.5px solid var(--clr-grey-2);
+}
+
 .movie-grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px 10px
 }
 
@@ -88,12 +117,15 @@
     border-radius: 5px;
     background-color: var(--clr-black-1);
     color: var(--clr-grey-3);
-    max-width: var(--card-width);
+    width: var(--card-width);
     overflow: hidden;
-    border: 3px solid var(--clr-grey-1)/* used so that the element doesn't appear to move on hover */
+    border: 3px solid var(--clr-grey-1)/* used, so that the element doesn't appear to move on hover */
 }
 .card:hover {
     border: 3px solid var(--clr-green);
+}
+.card .poster-wrapper {
+    position: relative;
 }
 .card .poster-wrapper .poster {
     object-fit: cover;
@@ -106,13 +138,45 @@
     height: var(--poster-height);
     background-color: var(--clr-black-2);
 }
+.card .poster-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    transition: opacity .5s ease-in-out;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card .poster-overlay:hover {
+    background-color: rgba(102, 119, 136, 0.5);
+    opacity: .8;
+}
+.card .poster-overlay .icons {
+    background-color: var(--clr-black-2);
+    color: var(--clr-grey-2);
+    padding: 5px 3px 1px 3px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px 2px var(--clr-grey-2);
+}
+
+.card .poster-overlay .icons span {
+    margin: 0 1px;
+    font-size: var(--ft-size-2);
+}
+.card .poster-overlay .icons span:hover {
+    color: var(--clr-grey-3);
+}
 .card .info {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     margin: .5rem;
     font-family: "Noto Sans TC";
-    font-size: var(--ft-size-2);
+    font-size: var(--ft-size-3);
     font-weight: 700;
 }
 .card .info .rating {

@@ -23,7 +23,7 @@ const HomePage = () => {
 
     }
     return (
-        <div>
+        <div className="homepage">
             <div className="search-box">
                 <input
                     type="text"
@@ -38,6 +38,7 @@ const HomePage = () => {
                 ))
                 }
             </div>
+
         </div>
     )
 }
