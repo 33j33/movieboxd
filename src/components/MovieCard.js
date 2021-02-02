@@ -1,9 +1,61 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { BiCameraMovie } from "react-icons/bi";
 import { FaPlus } from "react-icons/fa"
-import { AiFillHeart } from "react-icons/ai"
+import { AiFillHeart } from "react-icons/ai";
+import { GlobalContext } from "../context/GlobalState";
 
 const MovieCard = ({ movie }) => {
+    const { watchlist,
+        watched,
+        favourites,
+        addMovieToFavourites,
+        addMovieToWatched,
+        addMovieToWatchlist,
+        removeMovieFromFavourites,
+        removeMovieFromWatched,
+        removeMovieFromWatchlist } = useContext(GlobalContext);
+
+    // States to toggle Buttons
+    const [inWatched, setInWatched] = useState(watched.some(elem => elem.id === movie.id));
+    const [inWatchlist, setInWatchlist] = useState(watchlist.some(elem => elem.id === movie.id));
+    const [inFavourites, setInFavourites] = useState(favourites.some(elem => elem.id === movie.id));
+
+    // Function to Handle Buttons
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (e.currentTarget.id === "favourite-btn") {
+            if (inFavourites === false) {
+                addMovieToFavourites(movie);
+                setInFavourites(true);
+            }
+            else {
+                removeMovieFromFavourites(movie.id);
+                setInFavourites(false);
+            }
+        }
+        else if (e.currentTarget.id === "watchlist-btn") {
+            if (inWatchlist === false) {
+                addMovieToWatchlist(movie);
+                setInWatchlist(true);
+            }
+            else {
+                removeMovieFromWatchlist(movie.id);
+                setInWatchlist(false);
+            }
+        }
+        else if (e.currentTarget.id === "watched-btn") {
+            if (inWatched === false) {
+                addMovieToWatched(movie);
+                setInWatched(true);
+                setInWatchlist(false);
+                // When movie is added to watched, it is removed from watchlist
+            }
+            else {
+                removeMovieFromWatched(movie.id);
+                setInWatched(false);
+            }
+        }
+    }
 
     const findRatingClass = (rating) => {
         if (rating >= 8) {
@@ -33,9 +85,26 @@ const MovieCard = ({ movie }) => {
                 }
                 <div className="poster-overlay">
                     <div className="icons">
-                        <span><AiFillHeart /></span>
-                        <span><FaPlus /></span>
-                        <span><BiCameraMovie /></span>
+                        <div
+                            id="favourite-btn"
+                            className={inFavourites ? "red" : null}
+                            onClick={handleClick}
+                        >
+                            <AiFillHeart />
+                        </div>
+                        <div
+                            id="watchlist-btn"
+                            className={inWatchlist ? "active" : null}
+                            onClick={handleClick}
+                        >
+                            <FaPlus />
+                        </div>
+                        <div
+                            id="watched-btn"
+                            className={inWatched ? "active" : null}
+                            onClick={handleClick}
+                        ><BiCameraMovie />
+                        </div>
                     </div>
                 </div>
             </div>
