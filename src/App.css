@@ -18,9 +18,10 @@
     --clr-rating-bad: rgb(189, 101, 42);
 
     /* FONT SIZES */
-    --ft-size-1: 1.4rem;
-    --ft-size-2: 1.2rem;
-    --ft-size-3: .8rem;
+    --ft-size-1: 2.4rem;
+    --ft-size-2: 1.4rem;
+    --ft-size-3: 1.2rem;
+    --ft-size-4: .8rem;
 
     /* CARD DIMENSIONS */
     --card-width: 200px;
@@ -43,6 +44,7 @@ body {
 /* Common Classes Across the App */
 
 .movie-grid {
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -81,7 +83,7 @@ body {
 .nav .brand {
     letter-spacing: 2px;
     font-family: "Noto Sans TC";
-    font-size: var(--ft-size-1);
+    font-size: var(--ft-size-2);
 }
 .nav .links {
     display: flex;
@@ -179,7 +181,7 @@ body {
 
 .card .poster-overlay .icons div {
     margin: 0 2px;
-    font-size: var(--ft-size-2);
+    font-size: var(--ft-size-3);
     cursor: pointer;
 }
 .card .poster-overlay .icons div:hover {
@@ -198,7 +200,7 @@ body {
     gap: 10px;
     margin: .5rem;
     font-family: "Noto Sans TC";
-    font-size: var(--ft-size-3);
+    font-size: var(--ft-size-4);
     font-weight: 700;
 }
 .card .info .rating {
@@ -221,4 +223,26 @@ body {
 
 .card .info .rating.bad {
     color: var(--clr-rating-bad);
+}
+
+/* ======================================================================= */
+/* --------------WATCHED, FAVOURITES, WATCHLIST PAGE------------------------- */
+/* ======================================================================= */
+
+.watched, .favourites, .watchlist{
+    max-width: 960px;
+    margin: 0 auto;
+}
+.watched > h1, .favourites > h1, .watchlist > h1 {
+    font-size: var(--ft-size-1);
+    font-family: "Noto Sans TC";
+    margin-left: calc((10%)/2 + 2px);
+    color: var(--clr-grey-3);
+    margin-top: 20px;
+}
+.watched > p, .favourites > p, .watchlist > p {
+    font-family: "Lato";
+    margin: 8px 0px;
+    margin-left: calc((10%)/2 + 2px);
+    color: var(--clr-grey-2);
 }
